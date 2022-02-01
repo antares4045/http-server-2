@@ -1,0 +1,92 @@
+.zoomableImageContent {
+  max-width: 50%;
+  max-height: 100px;
+  margin-left: auto;
+  cursor: zoom-in;
+}
+
+.zoomableImageContent:hover {
+  outline: 1px solid lightgray;
+}
+
+.pageRoot {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.fab-next {
+  position: absolute;
+  z-index: 1000;
+  top: 50px;
+  right: 10px;
+}
+
+.fab-prev {
+  position: absolute;
+  z-index: 1000;
+  top: 50px;
+  left: 10px;
+}
+
+
+
+.dropzone-drop_here {
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-width: 10px;
+  border-style: dotted;
+  border-color: blue;
+  border-radius: 30px;
+  box-sizing: border-box;
+}
+
+.dropzone-calm_root {
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.dropzone-header {
+    width: 100%;
+    height: 100px;
+    min-height: 100px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.dropzone-content-container {
+    position : relative;
+    flex-grow: 1;
+    overflow: auto;
+    width: 100%;
+    cursor: default;
+}
+
+
+.wordrect{
+  fill : transparent;
+  stroke : rgba(0, 255, 0, 0.8);
+}
+
+.wordrect:hover{
+  fill : rgba(0, 255, 0, 0.2);
+}
