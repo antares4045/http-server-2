@@ -163,6 +163,8 @@ void HttpServer::HttpWebResponce::send(QTcpSocket *messageStream){
             qDebug() << request_->url_ << "sending responce body problem ((";
         }
     }
+
+
 }
 
 void HttpServer::HttpWebResponce::setText(QString text){

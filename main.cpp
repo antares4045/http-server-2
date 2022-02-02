@@ -1,4 +1,4 @@
-#include <QCoreApplication>
+#include <QtCore/QCoreApplication>
 
 #include "test/TestServer.h"
 #include "includes/ThreadManager.h"
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
       manager.addTask(&w2);
       manager.addTask(&w3);
 
-      QThread::sleep(1);
+//      manager.waitAllCurentTasks();
 
       return a.exec();
 

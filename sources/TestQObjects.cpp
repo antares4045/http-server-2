@@ -10,7 +10,7 @@ void SuperWaiter::onWaited(QRunnable *task){
     qDebug() << "waiter" << waiter->id_ << "completed" << waiter->comleted_ << waiter->result_;
 }
 
-Waiter::Waiter(int id, int duration): QRunnable(), id_(id),duration_(duration){
+Waiter::Waiter(int id, int duration): QRunnable(), id_(id), duration_(duration) {
 
 }
 
@@ -27,4 +27,8 @@ void Waiter::run(){
     qDebug() << id_ << "finished";
     comleted_ = true;
     return;
+}
+
+Waiter::~Waiter(){
+    qDebug() << "отчистка waiter" << id_;
 }

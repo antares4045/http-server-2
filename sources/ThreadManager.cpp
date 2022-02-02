@@ -10,16 +10,17 @@ ThreadManager::~ThreadManager(){
 }
 
 
-void ThreadManager::processTask(QRunnable *task, ThreadManager *self){
+void ThreadManager::processTask(QRunnable *task, ThreadManager *self, bool clearOnFinish){
     task->run();
     self->finished_.push_back(task);
     self->pool_.remove(task);
+    if(clearOnFinish)
+        delete task;
 }
 
-void ThreadManager::addTask(QRunnable *task){
+void ThreadManager::addTask(QRunnable *task, bool clearOnFinish){
 
-    QFuture<void> future = QtConcurrent::run(ThreadManager::processTask, task, this);
-
+    QFuture<void> future = QtConcurrent::run(ThreadManager::processTask, task, this, clearOnFinish);
     pool_[task] = future;
 
 }
@@ -61,7 +62,7 @@ void ThreadManager::mainLoop(){
             QThread::msleep(POOLING_SLEEP_MSECS);
         }else{
             emit taskFinished(finished_.first());
-//            qDebug() << "emmited" << finished_.first();
+            qDebug() << "emmited" << finished_.first();
             finished_.pop_front();
         }
     }

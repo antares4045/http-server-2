@@ -19,7 +19,7 @@ signals:
     // => настоятельная просьба ЛОГИКУ СЛОТА, если она сложнее палки, РЕАЛИЗОВЫВАТЬ В ОТДЕЛЬНОМ ПОТОКЕ ОТ СЛОТА
 
 public slots:
-    void addTask(QRunnable *task);
+    void addTask(QRunnable *task, bool clearOnFinish=true);
 
     void start();
 
@@ -32,7 +32,7 @@ protected slots:
     // => не пользуйтесь этим слотом, если вы не уверены, что знаете, что делаете
 private:
     void mainLoop();
-    static void processTask(QRunnable *task, ThreadManager *self);
+    static void processTask(QRunnable *task, ThreadManager *self, bool clearOnFinish);
 
     QHash<QRunnable *, QFuture<void> >  pool_;
     QLinkedList<QRunnable *>  finished_;

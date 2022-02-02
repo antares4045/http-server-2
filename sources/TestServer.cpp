@@ -20,7 +20,7 @@ HttpServer::HttpWebResponce image(TestServer::HttpWebRequest &request){
 
     resp.headers_["Content-Type"] = QStringList() << "image/jpeg";
 
-    QFile image("D:/prog/cpp/threader/13.jpg");
+    QFile image("D:/prog__old/py/pdf-ocr-reader/server/core/test_images_old/2.png");
     image.open(QIODevice::ReadOnly);
 //    image.open("D:/prog/cpp/threader/13.jpg", QIODevice::ReadOnly);
     resp.body_ = image.readAll();
@@ -48,7 +48,6 @@ HttpServer::HttpWebResponce contentPage(TestServer::HttpWebRequest &request){
 HttpServer::HttpWebResponce errorPage(TestServer::HttpWebRequest &request){
     TestServer::HttpWebResponce resp = request.responce(200);
 
-
     std::ignore = std::string().at(5);
 
     return resp;
@@ -61,14 +60,17 @@ TestServer::TestServer(unsigned short port, QObject *parent):HttpServer(port, tr
 
 
 
-    router_.setRootHandler("GET",
-                           router_.sendFileHandlerFactory(QStringList() << "index.html", "test/interface/build/"));
+//    router_.setRootHandler("GET",
+//                           router_.sendFileHandlerFactory(QStringList() << "index.html", "test/interface/build/"));
 
-    router_.addStatic(tr("interface").split("/"),"test/interface/build/");
+//    router_.addStatic(tr("interface").split("/"),"test/interface/build/");
 
-//    router_.addHandler("GET",tr("errorPage").split("/"), std::make_shared<Handler>(errorPage));
-//    router_.addHandler("GET",tr("content/pages/1").split("/"), std::make_shared<Handler>(contentPage));
-//    router_.addHandler("GET",tr("img/image.jpeg").split("/"), std::make_shared<Handler>(image));
+
+
+    router_.setRootHandler("GET", std::make_shared<Handler>(rootPage));
+    router_.addHandler("GET",tr("errorPage").split("/"), std::make_shared<Handler>(errorPage));
+    router_.addHandler("GET",tr("content/pages/1").split("/"), std::make_shared<Handler>(contentPage));
+    router_.addHandler("GET",tr("img/image.jpeg").split("/"), std::make_shared<Handler>(image));
 
 
 //    qDebug() << router_._print();

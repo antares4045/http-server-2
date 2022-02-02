@@ -6,9 +6,11 @@
 
 #include "../includes/ThreadManager.h"
 
-class Waiter:public QRunnable{
+class Waiter: public QRunnable {
 public:
     Waiter(int id, int duration=5);
+    virtual ~Waiter();
+
     void run() override;
 
     int id_;
