@@ -14,6 +14,7 @@ class HttpServer:public QTcpServer
 {
     Q_OBJECT
 public:
+
     struct HttpWebRequest;
     struct HttpWebResponce;
     class Router;
@@ -23,6 +24,11 @@ public:
     static HttpWebResponce default404Handler(HttpWebRequest &request);
     static HttpWebResponce errorCatcherMiddlware(HttpWebRequest &request, Handler next);
     static HttpWebResponce loggerMiddlware(HttpWebRequest &request, Handler next);
+
+    static HttpWebResponce corsMiddlware(HttpWebRequest &request, Handler next);
+
+
+
 
     class ClientProcess;
     friend ClientProcess;
@@ -58,6 +64,7 @@ public:
         //это делается СОВСЕМ не так, но для моих задач сойдёт)
     public:
         static const QString ALL_METHODS;
+
 
         void setRootHandler(QString method, std::shared_ptr<Handler> handler);
         void setDefaultHandler(QString method, std::shared_ptr<Handler> handler);
@@ -122,6 +129,7 @@ public:
         QJsonObject ascentValues; //точка взаимодействия детей с мидлварью
 
         static QMap<int, QString> defaultStatusMessages;
+        static const qsizetype CHUNCK_MAX_SIZE;
 
         void send(QTcpSocket *messageStream=nullptr);
 

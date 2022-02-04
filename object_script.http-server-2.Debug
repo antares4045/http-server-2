@@ -1,0 +1,11 @@
+debug/HttpServer.o
+debug/main.o
+debug/TaskManager.o
+debug/TestQObjects.o
+debug/TestServer.o
+debug/ThreadManager.o
+debug/moc_TaskManager.o
+debug/moc_TestQObjects.o
+debug/moc_TestServer.o
+debug/moc_HttpServer.o
+debug/moc_ThreadManager.o

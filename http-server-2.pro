@@ -1,6 +1,6 @@
-QT += core network concurrent gui widgets
+QT += core network concurrent gui widgets sql
 
-CONFIG += c++14 console
+CONFIG += c++17 console
 CONFIG -= app_bundle
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -10,6 +10,7 @@ CONFIG -= app_bundle
 SOURCES += \
         sources/HttpServer.cpp \
         main.cpp \
+        sources/TaskManager.cpp \
         sources/TestQObjects.cpp \
         sources/TestServer.cpp \
         sources/ThreadManager.cpp
@@ -20,10 +21,13 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    includes/DBConnecionFactory.h \
+    includes/TaskManager.h \
     test/TestQObjects.h \
     test/TestServer.h \
     utils/HttpServer.h \
     includes/ThreadManager.h
 
 DISTFILES += \
+    main_old.cpp \
     test/interface/build/*

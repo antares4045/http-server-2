@@ -24,7 +24,7 @@ public:
 class SuperWaiter:public QObject{
     Q_OBJECT
 public:
-    SuperWaiter(ThreadManager *manager);
+    SuperWaiter(serviceBase::ThreadManager *manager);
 public slots:
     void onWaited(QRunnable *waiter);
 

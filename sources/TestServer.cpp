@@ -10,6 +10,7 @@ HttpServer::HttpWebResponce rootPage(TestServer::HttpWebRequest &request){
                  "<a href='/content/pages/1'>Какой-то контент</a><br/>"
                  "<a href='/content/pages/2'>Тут ничего нет</a><br/>"
                  "<a href='/errorPage'>А тут должно быть больно</a><br/>"
+                 "<a href='/api/over9000'>9Mb текст</a><br/>"
                  "<img src='/img/image.jpeg' />");
     return resp;
 }
@@ -18,20 +19,15 @@ HttpServer::HttpWebResponce image(TestServer::HttpWebRequest &request){
 
     TestServer::HttpWebResponce resp = request.responce(200);
 
-    resp.headers_["Content-Type"] = QStringList() << "image/jpeg";
+    resp.headers_["Content-Type"] = QStringList() << "image/png";
 
-    QFile image("D:/prog__old/py/pdf-ocr-reader/server/core/test_images_old/2.png");
+    QFile image("test/interface/build/favicon-16x16.png");
     image.open(QIODevice::ReadOnly);
-//    image.open("D:/prog/cpp/threader/13.jpg", QIODevice::ReadOnly);
+
     resp.body_ = image.readAll();
     image.close();
 
     resp.headers_["Content-Length"] = QStringList() << QString("%1").arg(resp.body_.length()) ;
-
-    QFile saved("D:/prog/cpp/threader/save.jpg");
-    saved.open(QIODevice::WriteOnly);
-    saved.write(resp.body_);
-    saved.close();
 
     return resp;
 }
@@ -42,7 +38,7 @@ HttpServer::HttpWebResponce contentPage(TestServer::HttpWebRequest &request){
     TestServer::HttpWebResponce resp = request.responce(200);
     resp.statusMessage_ = "U can write some shitty things here";
     resp.setText("<h1>Какой-то контент</h1>"
-                 "<a href='/'>домой</a><br/>");
+                 "<a href='/testPage'>домой</a><br/>");
     return resp;
 }
 HttpServer::HttpWebResponce errorPage(TestServer::HttpWebRequest &request){
@@ -53,21 +49,44 @@ HttpServer::HttpWebResponce errorPage(TestServer::HttpWebRequest &request){
     return resp;
 }
 
+HttpServer::HttpWebResponce over9000(TestServer::HttpWebRequest &request){
+    TestServer::HttpWebResponce resp = request.responce(200);
+
+    QString answer = "дела:<br/>";
+    resp.setText(answer);
+
+    for(unsigned long long i=0; i< 320000;i++)
+        resp._addText(QString::number(i) + ") " + "Дело №" + QString::number(i) + "<br/>");
+
+
+    return resp;
+}
+
+HttpServer::HttpWebResponce headersControlLoggerMiddlware(HttpServer::HttpWebRequest &request, HttpServer::Handler next){
+
+    HttpServer::HttpWebResponce responce = next(request);
+    qDebug() << request.method_ << request.url_
+             << "[" << responce.statusCode_ << "]" << responce.headers_;
+    return responce;
+}
 
 
 
 TestServer::TestServer(unsigned short port, QObject *parent):HttpServer(port, true, 10, parent){
 
-
-
-//    router_.setRootHandler("GET",
-//                           router_.sendFileHandlerFactory(QStringList() << "index.html", "test/interface/build/"));
-
-//    router_.addStatic(tr("interface").split("/"),"test/interface/build/");
+    router_.addMiddlware(QString("").split("/"), std::make_shared<Middleware>(corsMiddlware));
+//    router_.addMiddlware(QString("").split("/"), std::make_shared<Middleware>(headersControlLoggerMiddlware));
 
 
 
-    router_.setRootHandler("GET", std::make_shared<Handler>(rootPage));
+    router_.setRootHandler("GET", router_.sendFileHandlerFactory(QStringList() << "index.html", "test/interface/build/"));
+
+    router_.addStatic(tr("interface").split("/"),"test/interface/build/");
+
+    router_.addHandler("GET",tr("api/over9000").split("/"), std::make_shared<Handler>(over9000));
+
+
+    router_.addHandler("GET",tr("testPage").split("/"), std::make_shared<Handler>(rootPage));
     router_.addHandler("GET",tr("errorPage").split("/"), std::make_shared<Handler>(errorPage));
     router_.addHandler("GET",tr("content/pages/1").split("/"), std::make_shared<Handler>(contentPage));
     router_.addHandler("GET",tr("img/image.jpeg").split("/"), std::make_shared<Handler>(image));

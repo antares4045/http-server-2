@@ -1,13 +1,14 @@
 #include "../test/TestQObjects.h"
 
 
-SuperWaiter::SuperWaiter(ThreadManager *manager):QObject(){
+SuperWaiter::SuperWaiter(serviceBase::ThreadManager *manager):QObject(){
     connect(manager, SIGNAL(taskFinished(QRunnable *)), this, SLOT(onWaited(QRunnable *)));
 }
 
 void SuperWaiter::onWaited(QRunnable *task){
     Waiter *waiter = static_cast<Waiter *>(task);
     qDebug() << "waiter" << waiter->id_ << "completed" << waiter->comleted_ << waiter->result_;
+    delete waiter;
 }
 
 Waiter::Waiter(int id, int duration): QRunnable(), id_(id), duration_(duration) {

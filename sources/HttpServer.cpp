@@ -5,8 +5,11 @@
 #include <QDateTime>
 #include <QFile>
 #include <QDir>
+#include <QtGlobal>
+#include <QMimeDatabase>
 
 QMap<int, QString> HttpServer::HttpWebResponce::defaultStatusMessages = generateDefaultStatusMessages();
+const qsizetype HttpServer::HttpWebResponce::CHUNCK_MAX_SIZE=100000;
 const QString HttpServer::Router::ALL_METHODS = "ALL";
 
 
@@ -26,6 +29,18 @@ HttpServer::HttpWebResponce HttpServer::loggerMiddlware(HttpServer::HttpWebReque
              << "[" << responce.statusCode_ << "]";
     return responce;
 }
+
+HttpServer::HttpWebResponce HttpServer::corsMiddlware(HttpWebRequest &request, Handler next){
+
+    HttpWebResponce responce = next(request);
+
+    responce._addHeader("Access-Control-Allow-Credentials", "true");
+    responce._addHeader("Access-Control-Allow-Origin", request.headers_.value("Origin", QStringList() << "*").first());
+
+
+    return responce;
+
+}
 HttpServer::HttpWebResponce HttpServer::errorCatcherMiddlware(HttpServer::HttpWebRequest &request, HttpServer::Handler next){
     try{
         return next(request);
@@ -43,11 +58,6 @@ HttpServer::HttpWebResponce HttpServer::errorCatcherMiddlware(HttpServer::HttpWe
         return resp;
     }
 }
-
-
-
-
-
 
 
 
@@ -141,6 +151,22 @@ void HttpServer::incomingConnection(qintptr socketDescriptor){
 
 
 
+void writeAndWaitArrayInSocket(QTcpSocket *stream, const QByteArray &arr){
+    QByteArray::const_iterator messageIterator = arr.begin();
+    qsizetype msgLen = arr.length();
+
+    while(msgLen > 0){
+        qint64 chunckSize = stream->write(messageIterator, qMin(msgLen, HttpServer::HttpWebResponce::CHUNCK_MAX_SIZE));
+        messageIterator += chunckSize;
+        msgLen -= chunckSize;
+
+        if(!stream -> waitForBytesWritten()){
+            qDebug() << "сообщение не удалось отправить" << stream->errorString();
+            return;
+        }
+    }
+}
+
 void HttpServer::HttpWebResponce::send(QTcpSocket *messageStream){
     if(!messageStream)
         messageStream = request_->messageSocket_;
@@ -155,14 +181,21 @@ void HttpServer::HttpWebResponce::send(QTcpSocket *messageStream){
         }
     }
     responceHeader += "\r\n";
-    messageStream->write(responceHeader.toUtf8());
 
+    QByteArray message = responceHeader.toUtf8();
+    writeAndWaitArrayInSocket(messageStream, message);
     if(body_.length()){
-        messageStream->write(body_);
-        if(!(messageStream -> waitForBytesWritten())){
-            qDebug() << request_->url_ << "sending responce body problem ((";
-        }
+//        if(body_.length() >= HttpServer::HttpWebResponce::CHUNCK_MAX_SIZE){
+//            writeAndWaitArrayInSocket(messageStream, message);
+//            writeAndWaitArrayInSocket(messageStream, body_);
+//            return;
+//        }
+//        message += body_;
+        writeAndWaitArrayInSocket(messageStream, body_);
     }
+
+
+
 
 
 }
@@ -363,19 +396,30 @@ void HttpServer::Router::addStatic(QStringList route, QString path){
 
 
 std::shared_ptr<HttpServer::Handler> HttpServer::Router::sendFileHandlerFactory(QStringList route, QString basePath){
+    static QMimeDatabase mimeDb;
     QString path = basePath + route.join("/");
     QFile file(path);
+
+
+
     if(file.exists()){
         return std::make_shared<Handler>([path](HttpWebRequest& request) -> HttpWebResponce{
-
+//            qDebug() << "he he he" << path << mimeDb.mimeTypeForFile(path).name();
             QFile file(path);
             HttpWebResponce responce = request.responce(200);
             if(!file.open(QIODevice::ReadOnly)){
                    responce.statusCode_ = 500;
                    responce.body_ = file.errorString().toUtf8();
+
+                   qDebug() << "file headers" << responce.headers_;
             }
             else
+            {
                 responce.body_ = file.readAll();
+
+                responce._addHeader("content-length", QString::number(responce.body_.length()));
+                responce._addHeader("content-type", mimeDb.mimeTypeForFile(path).name());
+            }
             file.close();
 
             return responce;

@@ -251,6 +251,7 @@ Makefile: http-server-2.pro ../../../Qt/5.12.12/mingw73_32/mkspecs/win32-g++/qma
 		../../../Qt/5.12.12/mingw73_32/lib/Qt5Gui.prl \
 		../../../Qt/5.12.12/mingw73_32/lib/Qt5Network.prl \
 		../../../Qt/5.12.12/mingw73_32/lib/Qt5Concurrent.prl \
+		../../../Qt/5.12.12/mingw73_32/lib/Qt5Sql.prl \
 		../../../Qt/5.12.12/mingw73_32/lib/Qt5Core.prl
 	$(QMAKE) -o Makefile http-server-2.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 ../../../Qt/5.12.12/mingw73_32/mkspecs/features/spec_pre.prf:
@@ -441,6 +442,7 @@ http-server-2.pro:
 ../../../Qt/5.12.12/mingw73_32/lib/Qt5Gui.prl:
 ../../../Qt/5.12.12/mingw73_32/lib/Qt5Network.prl:
 ../../../Qt/5.12.12/mingw73_32/lib/Qt5Concurrent.prl:
+../../../Qt/5.12.12/mingw73_32/lib/Qt5Sql.prl:
 ../../../Qt/5.12.12/mingw73_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile http-server-2.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
