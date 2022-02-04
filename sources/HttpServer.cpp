@@ -31,11 +31,22 @@ HttpServer::HttpWebResponce HttpServer::loggerMiddlware(HttpServer::HttpWebReque
 }
 
 HttpServer::HttpWebResponce HttpServer::corsMiddlware(HttpWebRequest &request, Handler next){
+    if(request.method_ == "OPTIONS"){
+        HttpWebResponce responce = request.responce(200);
+        responce._addHeader("Access-Control-Allow-Credentials", "true");
+        responce._addHeader("Access-Control-Allow-Methods", "PUT, POST, GET, OPTIONS, DELETE");
+        responce._addHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
+        responce._addHeader("Access-Control-Max-Age", "1728000");
+        responce._addHeader("Access-Control-Allow-Credentials", "true");
+        responce._addHeader("Access-Control-Allow-Origin", request.headers_.contains("origin") ? request.headers_["origin"].first(): "*");
+        return responce;
+    }
+
 
     HttpWebResponce responce = next(request);
 
     responce._addHeader("Access-Control-Allow-Credentials", "true");
-    responce._addHeader("Access-Control-Allow-Origin", request.headers_.value("Origin", QStringList() << "*").first());
+    responce._addHeader("Access-Control-Allow-Origin", request.headers_.contains("origin") ? request.headers_["origin"].first(): "*");
 
 
     return responce;
@@ -220,9 +231,12 @@ void HttpServer::HttpWebResponce::_addText(QString text){
 
 void HttpServer::HttpWebRequest::parse(QTcpSocket *messageSocket){
 
-    QTextStream textStream(messageSocket);
+    dataStream_ = new QTextStream(messageSocket);
+    QTextStream& textStream(*dataStream_);
+
     textStream.setAutoDetectUnicode(true);
     messageSocket_ = messageSocket;
+
     QStringList firstLine;
 
     while(firstLine.length() == 0 || firstLine[0] == ""){
@@ -259,7 +273,7 @@ void HttpServer::HttpWebRequest::parse(QTcpSocket *messageSocket){
 
     while(line != ""){
         buff = line.split(':');
-        QString key = buff[0];
+        QString key = buff[0].toLower();
         buff.pop_front();
         if(!headers_.contains(key))
             headers_[key] = QStringList();
@@ -270,6 +284,14 @@ void HttpServer::HttpWebRequest::parse(QTcpSocket *messageSocket){
 
         line = textStream.readLine();
     }
+    auto self = this;
+    readBody = [self]() -> QByteArray{
+        return self->dataStream_->readAll().toUtf8();
+    };
+}
+
+QJsonDocument HttpServer::HttpWebRequest::readJson(){
+    return QJsonDocument::fromJson(readBody());
 }
 
 HttpServer::HttpWebResponce HttpServer::HttpWebRequest::responce(int status){

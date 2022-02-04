@@ -5,6 +5,7 @@
 #include <QTcpSocket>
 #include <QThreadPool>
 #include <QRunnable>
+#include <QJsonDocument>
 #include <QJsonObject>
 //Class smart pointers
 #include <memory>//std::unique_ptr, std::make_unique
@@ -110,13 +111,23 @@ public:
         QHash<QString, QStringList > args_;
         QHash<QString, QStringList > headers_;
 
+        std::function<QByteArray()> readBody = nullptr;
+
         QTcpSocket *messageSocket_;
+        QTextStream *dataStream_=nullptr;
 
         QJsonObject diveValues; //точка взаимодействия мидлвари с детьми
 
         void parse(QTcpSocket *messageSocket);
 
+        QJsonDocument readJson();
+
         HttpServer::HttpWebResponce responce(int status = 200);
+        ~HttpWebRequest(){
+            if(dataStream_){
+                delete dataStream_;
+            }
+        }
     };
 
     struct HttpWebResponce{
