@@ -37,7 +37,6 @@ HttpServer::HttpWebResponce HttpServer::corsMiddlware(HttpWebRequest &request, H
         responce._addHeader("Access-Control-Allow-Methods", "PUT, POST, GET, OPTIONS, DELETE");
         responce._addHeader("Access-Control-Allow-Headers", "Content-Type, Accept");
         responce._addHeader("Access-Control-Max-Age", "1728000");
-        responce._addHeader("Access-Control-Allow-Credentials", "true");
         responce._addHeader("Access-Control-Allow-Origin", request.headers_.contains("origin") ? request.headers_["origin"].first(): "*");
         return responce;
     }

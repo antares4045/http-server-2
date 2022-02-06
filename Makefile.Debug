@@ -69,8 +69,7 @@ OBJECTS       = debug/HttpServer.o \
 		debug/moc_HttpServer.o \
 		debug/moc_ThreadManager.o
 
-DIST          = main_old.cpp \
-		test/interface/build/* includes\DBConnecionFactory.h \
+DIST          = test/interface/build/* includes\DBConnecionFactory.h \
 		includes\TaskManager.h \
 		test\TestQObjects.h \
 		test\TestServer.h \
@@ -655,6 +654,152 @@ debug/moc_TestServer.cpp: test/TestServer.h \
 		../../../Qt/5.12.12/mingw73_32/include/QtCore/QJsonObject \
 		../../../Qt/5.12.12/mingw73_32/include/QtCore/qjsonobject.h \
 		../../../Qt/5.12.12/mingw73_32/include/QtCore/qjsonvalue.h \
+		includes/TaskManager.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/QThread \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/QtConcurrent \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/QtConcurrentDepends \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/QtCore \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/QtCoreDepends \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qabstractanimation.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qabstracteventdispatcher.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qeventloop.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qabstractitemmodel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qabstractnativeeventfilter.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qabstractproxymodel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qabstractstate.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qabstracttransition.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qanimationgroup.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qarraydataops.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qarraydatapointer.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qbasictimer.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qbitarray.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qbuffer.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qbytearraymatcher.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcache.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcborarray.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcborvalue.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qdatetime.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcborcommon.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qregularexpression.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qurl.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qurlquery.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/quuid.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcbormap.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcborstream.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfloat16.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcollator.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcommandlineoption.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcommandlineparser.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcryptographichash.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qdatastream.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qdeadlinetimer.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qelapsedtimer.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qdir.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfileinfo.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfile.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfiledevice.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qdiriterator.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qeasingcurve.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qendian.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qeventtransition.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qexception.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfactoryinterface.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfileselector.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/QStringList \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfilesystemwatcher.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfinalstate.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfuture.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfutureinterface.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qresultstore.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfuturesynchronizer.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfuturewatcher.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qhistorystate.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qidentityproxymodel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qisenum.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qitemselectionmodel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qjsonarray.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qjsondocument.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qlibrary.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qlibraryinfo.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qversionnumber.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qline.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qlinkedlist.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qlockfile.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qloggingcategory.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmargins.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmath.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmessageauthenticationcode.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmetaobject.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmimedata.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmimedatabase.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmimetype.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qobjectcleanuphandler.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qoperatingsystemversion.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qparallelanimationgroup.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qpauseanimation.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qplugin.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qpointer.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qpluginloader.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qprocess.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qpropertyanimation.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qvariantanimation.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qqueue.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qrandom.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qreadwritelock.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qrect.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsize.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qresource.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsavefile.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qscopedvaluerollback.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qscopeguard.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsemaphore.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsequentialanimationgroup.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsettings.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsharedmemory.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsignalmapper.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsignaltransition.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsocketnotifier.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsortfilterproxymodel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qstack.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qstandardpaths.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qstate.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qstatemachine.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qstorageinfo.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qstringlistmodel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsystemsemaphore.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtemporarydir.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtemporaryfile.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtextboundaryfinder.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtextcodec.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qthreadstorage.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtimeline.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtimer.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtimezone.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtranslator.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtypetraits.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qwaitcondition.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qwineventnotifier.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qxmlstream.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtcoreversion.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentcompilertest.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrent_global.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentexception.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentfilter.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentfilterkernel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentiteratekernel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentmedian.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentthreadengine.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentmapkernel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentreducekernel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentfunctionwrappers.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentmap.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentrun.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentrunbase.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentstoredfunctioncall.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentversion.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/QHash \
+		includes/ThreadManager.h \
 		debug/moc_predefs.h \
 		../../../Qt/5.12.12/mingw73_32/bin/moc.exe
 	D:\Qt\5.12.12\mingw73_32\bin\moc.exe $(DEFINES) --include D:/prog/cpp/http-server-2/debug/moc_predefs.h -ID:/Qt/5.12.12/mingw73_32/mkspecs/win32-g++ -ID:/prog/cpp/http-server-2 -ID:/Qt/5.12.12/mingw73_32/include -ID:/Qt/5.12.12/mingw73_32/include/QtWidgets -ID:/Qt/5.12.12/mingw73_32/include/QtGui -ID:/Qt/5.12.12/mingw73_32/include/QtANGLE -ID:/Qt/5.12.12/mingw73_32/include/QtNetwork -ID:/Qt/5.12.12/mingw73_32/include/QtConcurrent -ID:/Qt/5.12.12/mingw73_32/include/QtSql -ID:/Qt/5.12.12/mingw73_32/include/QtCore -ID:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++ -ID:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32 -ID:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include -ID:/Qt/Tools/mingw730_32/lib/gcc/i686-w64-mingw32/7.3.0/include-fixed -ID:/Qt/Tools/mingw730_32/i686-w64-mingw32/include test\TestServer.h -o debug\moc_TestServer.cpp
@@ -1074,7 +1219,9 @@ debug/HttpServer.o: sources/HttpServer.cpp utils/HttpServer.h \
 		../../../Qt/5.12.12/mingw73_32/include/QtCore/QtGlobal \
 		../../../Qt/5.12.12/mingw73_32/include/QtCore/QMimeDatabase \
 		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmimedatabase.h \
-		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmimetype.h
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmimetype.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/QTextCodec \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtextcodec.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\HttpServer.o sources\HttpServer.cpp
 
 debug/main.o: main.cpp ../../../Qt/5.12.12/mingw73_32/include/QtCore/QCoreApplication \
@@ -1162,10 +1309,8 @@ debug/main.o: main.cpp ../../../Qt/5.12.12/mingw73_32/include/QtCore/QCoreApplic
 		../../../Qt/5.12.12/mingw73_32/include/QtCore/QJsonObject \
 		../../../Qt/5.12.12/mingw73_32/include/QtCore/qjsonobject.h \
 		../../../Qt/5.12.12/mingw73_32/include/QtCore/qjsonvalue.h \
-		test/TestQObjects.h \
+		includes/TaskManager.h \
 		../../../Qt/5.12.12/mingw73_32/include/QtCore/QThread \
-		../../../Qt/5.12.12/mingw73_32/include/QtCore/QDebug \
-		includes/ThreadManager.h \
 		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/QtConcurrent \
 		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/QtConcurrentDepends \
 		../../../Qt/5.12.12/mingw73_32/include/QtCore/QtCore \
@@ -1307,7 +1452,7 @@ debug/main.o: main.cpp ../../../Qt/5.12.12/mingw73_32/include/QtCore/QCoreApplic
 		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentstoredfunctioncall.h \
 		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentversion.h \
 		../../../Qt/5.12.12/mingw73_32/include/QtCore/QHash \
-		includes/TaskManager.h
+		includes/ThreadManager.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o main.cpp
 
 debug/TaskManager.o: sources/TaskManager.cpp includes/TaskManager.h \
@@ -1830,9 +1975,153 @@ debug/TestServer.o: sources/TestServer.cpp test/TestServer.h \
 		../../../Qt/5.12.12/mingw73_32/include/QtCore/QJsonObject \
 		../../../Qt/5.12.12/mingw73_32/include/QtCore/qjsonobject.h \
 		../../../Qt/5.12.12/mingw73_32/include/QtCore/qjsonvalue.h \
-		../../../Qt/5.12.12/mingw73_32/include/QtCore/QFile \
+		includes/TaskManager.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/QThread \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/QtConcurrent \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/QtConcurrentDepends \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/QtCore \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/QtCoreDepends \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qabstractanimation.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qabstracteventdispatcher.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qeventloop.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qabstractitemmodel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qabstractnativeeventfilter.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qabstractproxymodel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qabstractstate.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qabstracttransition.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qanimationgroup.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qarraydataops.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qarraydatapointer.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qbasictimer.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qbitarray.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qbuffer.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qbytearraymatcher.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcache.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcborarray.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcborvalue.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qdatetime.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcborcommon.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qregularexpression.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qurl.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qurlquery.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/quuid.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcbormap.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcborstream.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfloat16.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcollator.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcommandlineoption.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcommandlineparser.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcoreapplication.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qcryptographichash.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qdatastream.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qdeadlinetimer.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qelapsedtimer.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qdir.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfileinfo.h \
 		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfile.h \
-		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfiledevice.h
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfiledevice.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qdiriterator.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qeasingcurve.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qendian.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qeventtransition.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qexception.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfactoryinterface.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfileselector.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/QStringList \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfilesystemwatcher.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfinalstate.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfuture.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfutureinterface.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qresultstore.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfuturesynchronizer.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qfuturewatcher.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qhistorystate.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qidentityproxymodel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qisenum.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qitemselectionmodel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qjsonarray.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qjsondocument.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qlibrary.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qlibraryinfo.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qversionnumber.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qline.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qlinkedlist.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qlockfile.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qloggingcategory.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmargins.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmath.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmessageauthenticationcode.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmetaobject.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmimedata.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmimedatabase.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qmimetype.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qobjectcleanuphandler.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qoperatingsystemversion.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qparallelanimationgroup.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qpauseanimation.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qplugin.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qpointer.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qpluginloader.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qprocess.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qpropertyanimation.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qvariantanimation.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qqueue.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qrandom.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qreadwritelock.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qrect.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsize.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qresource.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsavefile.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qscopedvaluerollback.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qscopeguard.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsemaphore.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsequentialanimationgroup.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsettings.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsharedmemory.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsignalmapper.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsignaltransition.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsocketnotifier.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsortfilterproxymodel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qstack.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qstandardpaths.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qstate.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qstatemachine.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qstorageinfo.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qstringlistmodel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qsystemsemaphore.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtemporarydir.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtemporaryfile.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtextboundaryfinder.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtextcodec.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qthreadstorage.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtimeline.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtimer.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtimezone.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtranslator.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtypetraits.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qwaitcondition.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qwineventnotifier.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qxmlstream.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/qtcoreversion.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentcompilertest.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrent_global.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentexception.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentfilter.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentfilterkernel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentiteratekernel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentmedian.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentthreadengine.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentmapkernel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentreducekernel.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentfunctionwrappers.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentmap.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentrun.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentrunbase.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentstoredfunctioncall.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtConcurrent/qtconcurrentversion.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/QHash \
+		includes/ThreadManager.h \
+		../../../Qt/5.12.12/mingw73_32/include/QtCore/QJsonDocument
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\TestServer.o sources\TestServer.cpp
 
 debug/ThreadManager.o: sources/ThreadManager.cpp includes/ThreadManager.h \

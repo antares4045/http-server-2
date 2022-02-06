@@ -5,7 +5,7 @@
 QString serviceBase::TaskManager::configFunctionSelectorFieldName = "functionSelectorFieldName";
 
 serviceBase::TaskManager::TaskManager(QJsonObject config, FunctionMapperType mapper, QObject *parent)
-    :QObject(parent), mapper_(mapper), threadpool_(this)
+    :ThreadManager(parent), mapper_(mapper)
 {
     if(config.contains(TaskManager::configFunctionSelectorFieldName)){
         controlHeader_ = std::make_shared<headerFunctionControlType>(config[TaskManager::configFunctionSelectorFieldName].toString());
@@ -13,6 +13,7 @@ serviceBase::TaskManager::TaskManager(QJsonObject config, FunctionMapperType map
 }
 
 void serviceBase::TaskManager::defaultHandler(headerType &, bodyType &){
+    qDebug() << "serviceBase::TaskManager::defaultHandler has been called";
     throw std::invalid_argument("serviceBase::TaskManager::defaultHandler has been called");
 }
 
@@ -37,6 +38,8 @@ QRunnable *serviceBase::TaskManager::construct(headerType header, bodyType body)
 void serviceBase::TaskManager::onMessage(headerType header, bodyType body){
     //место под планировщик
     QRunnable * task = construct(header, body);
+
+    qDebug() << "onMessage" << header << body;
     onNewTask(task);
 }
 
@@ -49,5 +52,5 @@ void serviceBase::TaskManager::onTaskFinished(QRunnable *task) {
 void serviceBase::TaskManager::onNewTask(QRunnable *task) //над этой сигнатурой мы ещё подумаем
 {
     //место под балансировщик, проверяющий можно ли впихнуть задачу
-    threadpool_.addTask(task, true); //пока бездумный проброс -\()/-
+    addTask(task, true); //пока бездумный проброс -\()/-
 }

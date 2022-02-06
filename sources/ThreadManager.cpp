@@ -62,7 +62,6 @@ namespace serviceBase{
                 QThread::msleep(POOLING_SLEEP_MSECS);
             }else{
                 emit taskFinished(finished_.first());
-                qDebug() << "emmited" << finished_.first();
                 finished_.pop_front();
             }
         }

@@ -33,7 +33,7 @@ namespace serviceBase{
     typedef const QJsonObject bodyType;
     typedef QString headerFunctionControlType;
 
-    class TaskManager:public QObject
+    class TaskManager:public ThreadManager
     {
         Q_OBJECT
     public:
@@ -51,7 +51,6 @@ namespace serviceBase{
     private:
         FunctionMapperType mapper_;
         std::shared_ptr<headerFunctionControlType> controlHeader_ = nullptr;
-        ThreadManager threadpool_;
         static QString configFunctionSelectorFieldName;
     };
 

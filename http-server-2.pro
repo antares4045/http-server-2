@@ -29,5 +29,4 @@ HEADERS += \
     includes/ThreadManager.h
 
 DISTFILES += \
-    main_old.cpp \
     test/interface/build/*
