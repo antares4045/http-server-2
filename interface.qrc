@@ -1,9 +1,9 @@
 <RCC>
     <qresource prefix="/">
-		<file>test\interface\build</file>
-		<file>test\interface\build\static</file>
-		<file>test\interface\build\static\css</file>
-		<file>test\interface\build\static\js</file>
-		<file>test\interface\build\static\media</file>
+		<file>test/interface/build</file>
+		<file>test/interface/build/static</file>
+		<file>test/interface/build/static/css</file>
+		<file>test/interface/build/static/js</file>
+		<file>test/interface/build/static/media</file>
 	</qresource>
 </RCC>

@@ -8,7 +8,7 @@ const INTERFACE_QRC_PATH = fs.writeFileSync(
   path.join(PROJECT_ROOT, "interface.qrc"),
   (() => {
     function recursiveScan(root) {
-      let result = `\t\t<file>${path.relative(PROJECT_ROOT, root)}</file>\n`;
+      let result = `\t\t<file>${path.relative(PROJECT_ROOT, root).split('\\').join('/')}</file>\n`;
       console.log(path.relative(PROJECT_ROOT, root));
       fs.readdirSync(root).forEach((file) => {
         const name = path.resolve(root, file);
