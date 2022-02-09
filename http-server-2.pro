@@ -1,4 +1,5 @@
-QT += core network concurrent gui widgets sql
+QT -= gui widgets
+QT += core network concurrent sql
 
 CONFIG += c++17 console
 CONFIG -= app_bundle
