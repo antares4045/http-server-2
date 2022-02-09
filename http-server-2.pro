@@ -28,5 +28,5 @@ HEADERS += \
     utils/HttpServer.h \
     includes/ThreadManager.h
 
-DISTFILES += \
-    test/interface/build/*
+RESOURCES = \
+    interface.qrc

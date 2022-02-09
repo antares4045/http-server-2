@@ -5,7 +5,7 @@
 class TestServer: public HttpServer{
     Q_OBJECT
 public:
-    TestServer(unsigned short port=8000, QObject *parent = nullptr);
+    TestServer(QString interfacePath="test/interface/build/", unsigned short port=8000, QObject *parent = nullptr);
 
 private:
     HttpServer::HttpWebResponce functionResolver(HttpServer::HttpWebRequest &request);

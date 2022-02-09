@@ -49,13 +49,15 @@ HttpServer::HttpWebResponce TestServer::functionResolver(HttpServer::HttpWebRequ
 
 
 
-TestServer::TestServer(unsigned short port, QObject *parent):HttpServer(port, true, 10, parent) {
+TestServer::TestServer(QString interfacePath, unsigned short port, QObject *parent):HttpServer(port, true, 10, parent) {
 
     router_.addMiddlware(QString("").split("/"), std::make_shared<Middleware>(corsMiddlware));
 
 
-    router_.setRootHandler("GET", router_.sendFileHandlerFactory(QStringList() << "index.html", "test/interface/build/"));
-    router_.addStatic(tr("interface").split("/"),"test/interface/build/");
+    std::shared_ptr<Handler> root = router_.sendFileHandlerFactory(QStringList() << "index.html", interfacePath);
+    router_.setRootHandler("GET",  *root != nullptr ? root : std::make_shared<Handler>(default404Handler));
+
+    router_.addStatic(tr("interface").split("/"), interfacePath);
 
     auto self = this;
 

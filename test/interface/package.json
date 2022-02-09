@@ -21,7 +21,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build && npm run update-qrc",
+    "update-qrc" : "node ./update_interface_qrc.mjs"
   },
   "eslintConfig": {
     "extends": [
