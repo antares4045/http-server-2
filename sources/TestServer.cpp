@@ -2,6 +2,7 @@
 
 #include <QJsonDocument>
 #include <memory>
+#include <functional>
 
 void F1(QJsonObject header, QJsonObject body){
     for(int i=0; i<3; i++){
@@ -19,6 +20,10 @@ void F2(QJsonObject header, QJsonObject body){
     qDebug() << "F2" << header << body << "finished";
 }
 
+void Exit(QJsonObject, QJsonObject){
+    QThread::sleep(1);
+    exit(0);
+}
 
 
 HttpServer::HttpWebResponce TestServer::functionResolver(HttpServer::HttpWebRequest &request){
@@ -59,10 +64,21 @@ TestServer::TestServer(QString interfacePath, unsigned short port, QObject *pare
 
     router_.addStatic(tr("interface").split("/"), interfacePath);
 
-    auto self = this;
+//    auto self = this;
 
-    router_.addHandler("POST", tr("api/FunctionResolver").split("/"), std::make_shared<Handler>([self](HttpWebRequest &req)->HttpWebResponce {
-                           return self->functionResolver(req);
+    Handler handler = [this](TestServer::HttpWebRequest &req) -> HttpWebResponce{
+        return  functionResolver(req);
+    };
+    router_.addHandler("POST", tr("api/FunctionResolver").split("/"), std::make_shared<Handler>(handler));
+    router_.addHandler("GET", tr("api/exit").split("/"), std::make_shared<Handler>(
+       [this](TestServer::HttpWebRequest &req) -> HttpWebResponce{
+                       taskManager_->onMessage({
+                           {"function", "exit"}
+                       },
+                       {});
+                         HttpWebResponce res = req.responce(200);
+                         res.setText("stopped");
+                         return res;
                        }));
 
 
@@ -72,7 +88,8 @@ TestServer::TestServer(QString interfacePath, unsigned short port, QObject *pare
 
     serviceBase::TaskManager::FunctionMapperType mapper {
         {"F1", F1},
-        {"F2", F2}
+        {"F2", F2},
+        {"exit", Exit},
     };
 
 

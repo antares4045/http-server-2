@@ -12,7 +12,6 @@ SOURCES += \
         sources/HttpServer.cpp \
         main.cpp \
         sources/TaskManager.cpp \
-        sources/TestQObjects.cpp \
         sources/TestServer.cpp \
         sources/ThreadManager.cpp
 
@@ -24,7 +23,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     includes/DBConnecionFactory.h \
     includes/TaskManager.h \
-    test/TestQObjects.h \
     test/TestServer.h \
     utils/HttpServer.h \
     includes/ThreadManager.h

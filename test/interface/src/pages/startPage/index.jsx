@@ -9,8 +9,14 @@ import links from 'constants/links'
 export default function StartPage(){
 
 
-        return <div width="100vw" height="100vh" className='pageRoot'>
-            <Button
+        return <div width="100vw" height="100vh" className='pageRoot'
+            style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  width : "100%",
+            }}
+        >
+            <Button variant="contained"
                   onClick={
                         async () => {
                               await axios({
@@ -33,7 +39,7 @@ export default function StartPage(){
             >
                   send F1      
             </Button>    
-            <Button
+            <Button variant="contained"
                   onClick={
                         async () => {
                               await axios({
@@ -55,6 +61,25 @@ export default function StartPage(){
                   }}
             >
                   send F2      
-            </Button>    
+            </Button>   
+            <Button variant="contained"
+                  onClick={
+                        async () => {
+                              await axios({
+                              cors : false,
+                              method : 'post',
+                              url : links.functionResolver,
+                              data : {
+                                    "header": {
+                                        "function": "exit"
+                                    },
+                                    "body": {}
+
+                                }
+                        })
+                  }}
+            >
+                  exit      
+            </Button>     
         </div>
 }
